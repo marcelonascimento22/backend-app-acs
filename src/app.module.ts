@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PessoaModule } from './pessoa/pessoa.module';
 import { FamiliaModule } from './familia/familia.module';
@@ -35,27 +35,33 @@ import { CustomThrottlerGuard } from './common/custom-throttler.guard';
 import { InternalController } from './internal/internal.controller';
 import { InternalModule } from './internal/internal.module';
 import { TestController } from '../test/test.controller';
-
+//console.log(process.env.DATABASE_PASSWORD);
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DATABASE_HOST,
-      port: Number(process.env.DATABASE_PORT),
-      username: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_NAME,
-      autoLoadEntities: true,
-      entities: [
-        Usuario, 
-        Zona, 
-        UsuariosZona, 
-        Pessoa, 
-        Vacina, 
-        Vacinacao, 
-        Gestacao
-      ],
-      synchronize: false,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DATABASE_HOST'),
+        port: configService.get<number>('DATABASE_PORT'),
+        username: configService.get<string>('DATABASE_USER'),
+        password: configService.get<string>('DATABASE_PASSWORD'),
+        database: configService.get<string>('DATABASE_NAME'),
+        autoLoadEntities: true,
+        synchronize: false,
+        entities: [
+          Usuario, 
+          Zona, 
+          UsuariosZona, 
+          Pessoa, 
+          Vacina, 
+          Vacinacao, 
+          Gestacao
+        ],
+      }),
     }),
     ThrottlerModule.forRoot({
       throttlers: [
@@ -64,9 +70,6 @@ import { TestController } from '../test/test.controller';
           limit: 3,
         },
       ],
-    }),
-    ConfigModule.forRoot({
-      isGlobal: true,
     }),
     PessoaModule,
     FamiliaModule,
