@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PessoaModule } from './pessoa/pessoa.module';
 import { FamiliaModule } from './familia/familia.module';
