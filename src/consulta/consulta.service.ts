@@ -13,7 +13,7 @@ import { Gestacao } from '../gestacao/entities/gestacao.entity';
 import { StatusAgendamento } from './enum/StatusAgemdamento';
 
 import { CreateConsultaDto } from './dto/create-consulta.dto';
-import { Agendamento } from 'src/agendamento/entities/agendamento.entity';
+import { Agendamento } from '../agendamento/entities/agendamento.entity';
 
 @Injectable()
 export class ConsultaService {

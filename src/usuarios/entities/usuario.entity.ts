@@ -1,7 +1,7 @@
-import { Profissional } from 'src/profissional/entities/profissional.entity';
-import { UsuariosZona } from 'src/usuarios_zonas/entities/usuarios_zona.entity';
-import { Visita } from 'src/visita/entities/visita.entity';
-import { Zona } from 'src/zonas/entities/zona.entity';
+import { Profissional } from '../../profissional/entities/profissional.entity';
+import { UsuariosZona } from '../../usuarios_zonas/entities/usuarios_zona.entity';
+import { Visita } from '../../visita/entities/visita.entity';
+import { Zona } from '../../zonas/entities/zona.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
 
 @Entity('usuarios')

@@ -5,10 +5,10 @@ import {
 } from "@nestjs/common";
 import { UpdateAgendamentoDto } from "./dto/update-agendamento.dto";
 import { CreateAgendamentoDto } from "./dto/create-agendamento.dto";
-import { Pessoa } from "src/pessoa/entities/pessoa.entity";
+import { Pessoa } from "../pessoa/entities/pessoa.entity";
 import { Between, DataSource, Not, Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Slot } from "src/slot/entities/slot.entity";
+import { Slot } from "../slot/entities/slot.entity";
 import {
   Agendamento
 } from "./entities/agendamento.entity";

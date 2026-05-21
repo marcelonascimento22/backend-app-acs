@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
-import { Pessoa } from 'src/pessoa/entities/pessoa.entity';
-import { Prenatal } from 'src/prenatal/entities/prenatal.entity';
+import { Pessoa } from '../../pessoa/entities/pessoa.entity';
+import { Prenatal } from '../../prenatal/entities/prenatal.entity';
 
 @Entity()
 export class Gestacao {

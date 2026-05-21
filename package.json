@@ -19,7 +19,10 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "clean": "powershell -Command \"Remove-Item -Recurse -Force dist, node_modules -ErrorAction SilentlyContinue; Remove-Item package-lock.json -ErrorAction SilentlyContinue\"",
-    "reset": "npm run clean && npm install && npm run build && npm run test:e2e"
+    "reset": "npm run clean && npm install && npm run build && npm run test:e2e",
+    "migration:generate": "node -r ts-node/register ./node_modules/typeorm/cli.js migration:generate ./src/migrations/init -d ./src/database/data-source.ts",
+    "migration:run": "node -r ts-node/register ./node_modules/typeorm/cli.js migration:run -d ./src/database/data-source.ts",
+    "migration:revert": "node -r ts-node/register ./node_modules/typeorm/cli.js migration:revert -d ./src/database/data-source.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -35,6 +38,7 @@
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.4",
+    "dotenv": "^17.4.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.20.0",
@@ -68,6 +72,7 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "typeorm-ts-node-commonjs": "^0.3.20",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
   },

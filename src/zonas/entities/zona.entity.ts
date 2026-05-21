@@ -1,5 +1,5 @@
-import { Usuario } from 'src/usuarios/entities/usuario.entity';
-import { UsuariosZona } from 'src/usuarios_zonas/entities/usuarios_zona.entity';
+import { Usuario } from '../../usuarios/entities/usuario.entity';
+import { UsuariosZona } from '../../usuarios_zonas/entities/usuarios_zona.entity';
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, ManyToMany, OneToMany } from 'typeorm';
 
 @Entity('zonas')

@@ -11,9 +11,9 @@ import {
   Index,
 } from 'typeorm';
 import { Agenda } from '../../agenda/entities/agenda.entity';
-import { Usuario } from 'src/usuarios/entities/usuario.entity';
-import { Agendamento } from 'src/agendamento/entities/agendamento.entity';
-import { Consulta } from 'src/consulta/entities/consulta.entity';
+import { Usuario } from '../../usuarios/entities/usuario.entity';
+import { Agendamento } from '../../agendamento/entities/agendamento.entity';
+import { Consulta } from '../../consulta/entities/consulta.entity';
 
 @Entity('profissional')
 export class Profissional {

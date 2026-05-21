@@ -7,7 +7,7 @@ import { PrenatalController } from './prenatal.controller';
 import { Prenatal } from './entities/prenatal.entity';
 import { Gestacao } from '../gestacao/entities/gestacao.entity';
 import { Agenda } from '../agenda/entities/agenda.entity';
-import { Consulta } from 'src/consulta/entities/consulta.entity';
+import { Consulta } from '../consulta/entities/consulta.entity';
 
 @Module({
   imports: [

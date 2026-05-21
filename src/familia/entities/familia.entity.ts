@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { OneToMany } from 'typeorm';
 import { Pessoa } from '../../pessoa/entities/pessoa.entity';
-import { Visita } from 'src/visita/entities/visita.entity';
-import { Usuario } from 'src/usuarios/entities/usuario.entity';
+import { Visita } from '../../visita/entities/visita.entity';
+import { Usuario } from '../../usuarios/entities/usuario.entity';
 
 @Entity()
 export class Familia {

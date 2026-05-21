@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Slot } from "./entities/slot.entity";
 import { Repository } from "typeorm";
 import { CreateSlotDto } from "./dto/create-slot.dto";
-import { Agenda } from "src/agenda/entities/agenda.entity";
+import { Agenda } from "../agenda/entities/agenda.entity";
 import { UpdateSlotDto } from "./dto/update-slot.dto";
 
 @Injectable()

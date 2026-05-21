@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Pessoa } from '../../pessoa/entities/pessoa.entity';
-import { Familia } from 'src/familia/entities/familia.entity';
-import { Usuario } from 'src/usuarios/entities/usuario.entity';
+import { Familia } from '../../familia/entities/familia.entity';
+import { Usuario } from '../../usuarios/entities/usuario.entity';
 
 @Entity('visita') // Explicitly naming the table to match your DB
 export class Visita {

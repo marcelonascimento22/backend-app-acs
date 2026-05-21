@@ -4,7 +4,7 @@ import { CreateProfissionalDto } from "./dto/create-profissional.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Profissional } from "./entities/profissional.entity";
 import { Repository } from "typeorm";
-import { Usuario } from "src/usuarios/entities/usuario.entity";
+import { Usuario } from "../usuarios/entities/usuario.entity";
 
 @Injectable()
 export class ProfissionalService {

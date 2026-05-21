@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { Vacinacao } from './entities/vacinacao.entity';
 import { UpdateVacinacaoDto } from './dto/update-vacinacao.dto';
 import { Pessoa } from '../pessoa/entities/pessoa.entity';
-import { Vacina } from 'src/vacina/entities/vacina.entity';
+import { Vacina } from '../vacina/entities/vacina.entity';
 import { CreateVacinacaoDto } from './dto/create-vacinacao.dto';
 
 @Injectable()

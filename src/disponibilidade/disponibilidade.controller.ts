@@ -1,5 +1,4 @@
 import { Controller, Get, Inject, Param } from "@nestjs/common";
-import { AgendaService } from "src/agenda/agenda.service";
 import { DisponibilidadeService } from "./disponibilidade.service";
 
 @Controller('disponibilidade')

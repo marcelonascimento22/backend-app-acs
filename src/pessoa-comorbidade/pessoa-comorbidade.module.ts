@@ -3,8 +3,8 @@ import { PessoaComorbidade } from './entities/pessoa-comorbidade.entity';
 import { Module } from '@nestjs/common';
 import { PessoaComorbidadeService } from './pessoa-comorbidade.service';
 import { PessoaComorbidadeController } from './pessoa-comorbidade.controller';
-import { Comorbidade } from 'src/comorbidade/entities/comorbidade.entity';
-import { Pessoa } from 'src/pessoa/entities/pessoa.entity';
+import { Comorbidade } from '../comorbidade/entities/comorbidade.entity';
+import { Pessoa } from '../pessoa/entities/pessoa.entity';
 
 @Module({
   imports: [

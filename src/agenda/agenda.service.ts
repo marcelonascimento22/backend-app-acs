@@ -3,12 +3,12 @@ import { DataSource } from 'typeorm';
 import { Agenda } from "./entities/agenda.entity";
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { In, Repository } from "typeorm";
-import { Profissional } from "src/profissional/entities/profissional.entity";
+import { Profissional } from "../profissional/entities/profissional.entity";
 import { CreateAgendaDto } from "./dto/create-agenda.dto";
 import { UpdateAgendaDto } from "./dto/update-agenda.dto";
-import { Slot } from "src/slot/entities/slot.entity";
+import { Slot } from "../slot/entities/slot.entity";
 import { from } from "rxjs";
-import { Agendamento } from "src/agendamento/entities/agendamento.entity";
+import { Agendamento } from "../agendamento/entities/agendamento.entity";
 
 @Injectable()
 export class AgendaService {

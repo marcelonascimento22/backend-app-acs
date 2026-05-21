@@ -7,7 +7,7 @@ import { Gestacao } from '../gestacao/entities/gestacao.entity';
 import { Agenda } from '../agenda/entities/agenda.entity';
 
 import { CreatePrenatalDto } from './dto/create-prenatal.dto';
-import { Consulta } from 'src/consulta/entities/consulta.entity';
+import { Consulta } from '../consulta/entities/consulta.entity';
 
 @Injectable()
 export class PrenatalService {

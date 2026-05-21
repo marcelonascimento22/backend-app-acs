@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Agenda } from 'src/agenda/entities/agenda.entity';
+import { Agenda } from '../agenda/entities/agenda.entity';
 import { Between, Repository } from 'typeorm';
 
 @Injectable()

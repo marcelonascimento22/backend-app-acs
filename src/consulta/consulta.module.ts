@@ -7,7 +7,7 @@ import { Consulta } from './entities/consulta.entity';
 import { Pessoa } from '../pessoa/entities/pessoa.entity';
 import { Prenatal } from '../prenatal/entities/prenatal.entity';
 import { Gestacao } from '../gestacao/entities/gestacao.entity';
-import { Agendamento } from 'src/agendamento/entities/agendamento.entity';
+import { Agendamento } from '../agendamento/entities/agendamento.entity';
 
 @Module({
   imports: [

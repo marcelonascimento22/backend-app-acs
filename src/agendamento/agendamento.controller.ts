@@ -13,8 +13,8 @@ import {
 import { AgendamentoService } from './agendamento.service';
 import { CreateAgendamentoDto } from './dto/create-agendamento.dto';
 import { UpdateAgendamentoDto } from './dto/update-agendamento.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { CreateConsultaDto } from 'src/consulta/dto/create-consulta.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { CreateConsultaDto } from '../consulta/dto/create-consulta.dto';
 
 @Controller('agendamentos')
 export class AgendamentoController {

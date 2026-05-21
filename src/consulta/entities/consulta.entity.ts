@@ -3,9 +3,9 @@ import { IsDate, IsOptional } from "class-validator";
 import { Pessoa } from "../../pessoa/entities/pessoa.entity";
 import { Prenatal } from "../../prenatal/entities/prenatal.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Agendamento } from "src/agendamento/entities/agendamento.entity";
-import { Profissional } from "src/profissional/entities/profissional.entity";
-import { Agenda } from "src/agenda/entities/agenda.entity";
+import { Agendamento } from "../../agendamento/entities/agendamento.entity";
+import { Profissional } from "../../profissional/entities/profissional.entity";
+import { Agenda } from "../../agenda/entities/agenda.entity";
 
 @Entity('consulta')
 export class Consulta {

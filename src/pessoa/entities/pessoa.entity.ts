@@ -2,9 +2,9 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMan
 import { Familia } from '../../familia/entities/familia.entity';
 import { Visita } from '../../visita/entities/visita.entity';
 import { Vacinacao } from '../../vacinacao/entities/vacinacao.entity';
-import { PessoaComorbidade } from 'src/pessoa-comorbidade/entities/pessoa-comorbidade.entity';
-import { Gestacao } from 'src/gestacao/entities/gestacao.entity';
-import { Agendamento } from 'src/agendamento/entities/agendamento.entity';
+import { PessoaComorbidade } from '../../pessoa-comorbidade/entities/pessoa-comorbidade.entity';
+import { Gestacao } from '../../gestacao/entities/gestacao.entity';
+import { Agendamento } from '../../agendamento/entities/agendamento.entity';
 
 
 @Entity()

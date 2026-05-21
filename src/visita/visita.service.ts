@@ -6,8 +6,8 @@ import { Visita } from './entities/visita.entity';
 import { CreateVisitaDto } from './dto/create-visita.dto';
 import { UpdateVisitaDto } from './dto/update-visita.dto';
 import { Pessoa } from '../pessoa/entities/pessoa.entity';
-import { Familia } from 'src/familia/entities/familia.entity';
-import { Usuario } from 'src/usuarios/entities/usuario.entity';
+import { Familia } from '../familia/entities/familia.entity';
+import { Usuario } from '../usuarios/entities/usuario.entity';
 
 @Injectable()
 export class VisitaService {

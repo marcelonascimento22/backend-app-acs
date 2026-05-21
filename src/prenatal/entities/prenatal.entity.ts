@@ -6,8 +6,8 @@ import {
   JoinColumn,
   OneToOne,
 } from 'typeorm';
-import { Gestacao } from 'src/gestacao/entities/gestacao.entity';
-import { Consulta } from 'src/consulta/entities/consulta.entity';
+import { Gestacao } from '../../gestacao/entities/gestacao.entity';
+import { Consulta } from '../../consulta/entities/consulta.entity';
 
 @Entity('prenatal')
 export class Prenatal {

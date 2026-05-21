@@ -10,10 +10,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Pessoa } from 'src/pessoa/entities/pessoa.entity';
-import { Consulta } from 'src/consulta/entities/consulta.entity';
-import { Profissional } from 'src/profissional/entities/profissional.entity';
-import { Slot } from 'src/slot/entities/slot.entity';
+import { Pessoa } from '../../pessoa/entities/pessoa.entity';
+import { Consulta } from '../../consulta/entities/consulta.entity';
+import { Profissional } from '../../profissional/entities/profissional.entity';
+import { Slot } from '../../slot/entities/slot.entity';
 
 @Entity('agenda')
 @Unique(['dataPrevista', 'profissional'])

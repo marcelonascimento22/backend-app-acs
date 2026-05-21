@@ -6,7 +6,7 @@ import { Profissional } from '../profissional/entities/profissional.entity';
 
 import { AgendaService } from './agenda.service';
 import { AgendaController } from './agenda.controller';
-import { Slot } from 'src/slot/entities/slot.entity';
+import { Slot } from '../slot/entities/slot.entity';
 
 @Module({
   imports: [

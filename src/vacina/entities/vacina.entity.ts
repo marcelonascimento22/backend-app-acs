@@ -7,8 +7,8 @@ import {
 import { IsString, IsOptional, IsBoolean, IsNumber, IsDate, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ViaAdministracao } from './viaAdministracao.enum';
-import { Vacinacao } from 'src/vacinacao/entities/vacinacao.entity'; // ✅ Use o path do src
-import { Lote } from 'src/lote/entities/lote.entity';
+import { Vacinacao } from '../../vacinacao/entities/vacinacao.entity';
+import { Lote } from '../../lote/entities/lote.entity';
 
 @Entity('vacina')
 export class Vacina {
