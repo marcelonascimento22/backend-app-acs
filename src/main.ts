@@ -9,10 +9,14 @@ async function bootstrap() {
   app.useGlobalGuards(app.get(JwtAuthGuard));
 
   app.enableCors({
-  origin: 'https://frontend-app-acs.vercel.app/login',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-});
+    origin: [
+      'http://localhost:5173',
+      'https://frontend-app-acs.vercel.app'
+    ],
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
