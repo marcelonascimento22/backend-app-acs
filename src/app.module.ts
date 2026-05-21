@@ -43,24 +43,34 @@ import { TestController } from '../test/test.controller';
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
+      useFactory: (config: ConfigService) => {
 
-        host: config.get<string>('DATABASE_HOST'),
-        port: Number(config.get<string>('DATABASE_PORT')),
+        console.log({
+          host: config.get('DATABASE_HOST'),
+          port: config.get('DATABASE_PORT'),
+          user: config.get('DATABASE_USER'),
+          db: config.get('DATABASE_NAME'),
+        });
 
-        username: config.get<string>('DATABASE_USER'),
-        password: config.get<string>('DATABASE_PASSWORD'),
+        return {
+          type: 'postgres',
 
-        database: config.get<string>('DATABASE_NAME'),
+          host: config.get('DATABASE_HOST'),
+          port: Number(config.get('DATABASE_PORT')),
 
-        autoLoadEntities: true,
-        synchronize: false,
+          username: config.get('DATABASE_USER'),
+          password: config.get('DATABASE_PASSWORD'),
 
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      }),
+          database: config.get('DATABASE_NAME'),
+
+          autoLoadEntities: true,
+          synchronize: false,
+
+          ssl: {
+            rejectUnauthorized: false,
+          },
+        };
+      },
     }),
     ThrottlerModule.forRoot({
       throttlers: [
