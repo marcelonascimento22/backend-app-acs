@@ -9,7 +9,7 @@ async function bootstrap() {
   app.useGlobalGuards(app.get(JwtAuthGuard));
 
   app.enableCors({
-  origin: '*',
+  origin: 'https://frontend-app-acs.vercel.app/login',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 });
