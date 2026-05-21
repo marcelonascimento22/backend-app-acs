@@ -41,18 +41,27 @@ import { TestController } from '../test/test.controller';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-  TypeOrmModule.forRootAsync({
-    inject: [ConfigService],
-    useFactory: (config: ConfigService) => ({
-      type: 'postgres',
-      url: config.get<string>('DATABASE_URL'),
-      autoLoadEntities: true,
-      synchronize: false,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        type: 'postgres',
+
+        host: config.get<string>('DATABASE_HOST'),
+        port: Number(config.get<string>('DATABASE_PORT')),
+
+        username: config.get<string>('DATABASE_USER'),
+        password: config.get<string>('DATABASE_PASSWORD'),
+
+        database: config.get<string>('DATABASE_NAME'),
+
+        autoLoadEntities: true,
+        synchronize: false,
+
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      }),
     }),
-  }),
     ThrottlerModule.forRoot({
       throttlers: [
         {
