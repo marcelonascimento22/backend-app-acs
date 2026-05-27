@@ -1,10 +1,16 @@
 // test.controller.ts
 import { Controller, Get } from '@nestjs/common';
+import { Public } from 'src/auth/public.decorator';
 
 @Controller('test')
 export class TestController {
-  @Get('ping')
-  ping() {
-    return { ok: true };
+
+  @Public()
+  @Get()
+  teste() {
+    return {
+      ok: true,
+      mensagem: 'API funcionando',
+    };
   }
 }
