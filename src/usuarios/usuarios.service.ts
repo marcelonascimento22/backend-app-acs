@@ -49,6 +49,7 @@ async create(dto: CreateUsuarioDto) {
     email: dto.email.toLowerCase().trim(),
     senha_hash: senhaHash,
     perfil: dto.perfil || PerfilUsuario.ACS,
+    ativo: dto.ativo ?? true,
   });
 
   return this.repo.save(usuario);
