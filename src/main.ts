@@ -5,40 +5,62 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // 💡 O Guard Global (JwtAuthGuard) foi removido daqui!
-  // Agora ele deve ser declarado no `app.module.ts` para não quebrar o CORS.
-
+  /**
+   * 🌐 Origens permitidas para Web
+   */
   const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
     'https://frontend-app-acs.vercel.app',
   ];
 
+  /**
+   * ✅ Configuração CORS
+   */
   app.enableCors({
     origin: (origin, callback) => {
-      // 📱 Permissões especiais para o APK Mobile e ferramentas de teste:
-      // - !origin: requisições nativas sem header Origin (Postman/Insomnia)
-      // - origin === 'null': comum em WebViews de APKs Android compilados
-      // - file://, capacitor://, ionic://: protocolos internos de apps mobile
       console.log(`🔍 [CORS Debug] Origin recebido: "${origin}"`);
+
+      /**
+       * 📱 Permitir:
+       * - Apps mobile nativos
+       * - APK Android
+       * - WebViews
+       * - Postman / Insomnia
+       * - React Native / Expo
+       * - Rede local
+       */
       if (
-        !origin || 
-        origin === 'null' || 
-        origin.startsWith('file://') || 
-        origin.startsWith('capacitor://') || 
-        origin.startsWith('ionic://')
+        !origin ||
+        origin === 'null' ||
+        (typeof origin === 'string' &&
+          (
+            origin.startsWith('file://') ||
+            origin.startsWith('capacitor://') ||
+            origin.startsWith('ionic://') ||
+            origin.startsWith('exp://') ||
+            origin.startsWith('http://192.168.') ||
+            origin.startsWith('http://10.') ||
+            origin.startsWith('http://172.')
+          ))
       ) {
-        console.log(`✅ [CORS Debug] Permitido pelas regras mobile/ambiente local.`);
+        console.log('✅ [CORS Debug] Permitido mobile/local.');
         return callback(null, true);
       }
 
-      // 🌐 Permissões para os seus ambientes Web (Local e Vercel)
+      /**
+       * 🌍 Permitir frontend web
+       */
       if (allowedOrigins.includes(origin)) {
-        console.log(`✅ [CORS Debug] Permitido: Origem está na lista allowedOrigins.`);
+        console.log('✅ [CORS Debug] Permitido web.');
         return callback(null, true);
       }
-      
-      console.log(`❌ [CORS Debug] Bloqueado: Origem não está na lista allowedOrigins.`);
+
+      /**
+       * ❌ Bloquear origem desconhecida
+       */
+      console.log(`❌ [CORS Debug] Bloqueado: ${origin}`);
+
       return callback(
         new Error(`CORS bloqueado para origem: ${origin}`),
         false,
@@ -46,15 +68,34 @@ async function bootstrap() {
     },
 
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+
+    methods: [
+      'GET',
+      'POST',
+      'PUT',
+      'PATCH',
+      'DELETE',
+      'OPTIONS',
+    ],
+
     allowedHeaders: [
       'Content-Type',
       'Authorization',
       'Accept',
       'Origin',
+      'X-Requested-With',
     ],
+
+    exposedHeaders: [
+      'Authorization',
+    ],
+
+    optionsSuccessStatus: 204,
   });
 
+  /**
+   * ✅ Validação global
+   */
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -63,11 +104,14 @@ async function bootstrap() {
     }),
   );
 
+  /**
+   * 🚀 Porta
+   */
   const port = process.env.PORT || 3000;
 
   await app.listen(port);
 
-  //console.log(`API rodando na porta ${port}`);
+  console.log(`🚀 API rodando na porta ${port}`);
 }
 
 bootstrap();

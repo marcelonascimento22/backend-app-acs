@@ -111,10 +111,6 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
   providers: [
     {
       provide: APP_GUARD,
-      useClass: CustomThrottlerGuard,
-    },
-    {
-      provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },
   ],
