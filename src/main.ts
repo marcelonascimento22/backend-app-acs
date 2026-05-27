@@ -20,6 +20,7 @@ async function bootstrap() {
       // - !origin: requisições nativas sem header Origin (Postman/Insomnia)
       // - origin === 'null': comum em WebViews de APKs Android compilados
       // - file://, capacitor://, ionic://: protocolos internos de apps mobile
+      console.log(`🔍 [CORS Debug] Origin recebido: "${origin}"`);
       if (
         !origin || 
         origin === 'null' || 
@@ -27,14 +28,17 @@ async function bootstrap() {
         origin.startsWith('capacitor://') || 
         origin.startsWith('ionic://')
       ) {
+        console.log(`✅ [CORS Debug] Permitido pelas regras mobile/ambiente local.`);
         return callback(null, true);
       }
 
       // 🌐 Permissões para os seus ambientes Web (Local e Vercel)
       if (allowedOrigins.includes(origin)) {
+        console.log(`✅ [CORS Debug] Permitido: Origem está na lista allowedOrigins.`);
         return callback(null, true);
       }
-
+      
+      console.log(`❌ [CORS Debug] Bloqueado: Origem não está na lista allowedOrigins.`);
       return callback(
         new Error(`CORS bloqueado para origem: ${origin}`),
         false,
@@ -63,7 +67,7 @@ async function bootstrap() {
 
   await app.listen(port);
 
-  console.log(`API rodando na porta ${port}`);
+  //console.log(`API rodando na porta ${port}`);
 }
 
 bootstrap();
