@@ -34,4 +34,8 @@ export class CreateUsuarioDto {
   @IsOptional()
   @IsEnum(PerfilUsuario, { message: 'Perfil inválido' })
   perfil?: PerfilUsuario;
+
+  @IsOptional()
+  @IsEnum([true, false], { message: 'Ativo deve ser true ou false' })
+  ativo?: boolean;
 }
