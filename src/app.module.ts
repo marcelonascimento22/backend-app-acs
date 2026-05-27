@@ -35,6 +35,7 @@ import { CustomThrottlerGuard } from './common/custom-throttler.guard';
 import { InternalController } from './internal/internal.controller';
 import { InternalModule } from './internal/internal.module';
 import { TestController } from '../test/test.controller';
+import { JwtAuthGuard } from './auth/jwt-auth.guard';
 //console.log(process.env.DATABASE_PASSWORD);
 @Module({
   imports: [
@@ -111,6 +112,10 @@ import { TestController } from '../test/test.controller';
     {
       provide: APP_GUARD,
       useClass: CustomThrottlerGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
     },
   ],
 

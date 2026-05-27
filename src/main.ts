@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
-import { JwtAuthGuard } from './auth/jwt-auth.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalGuards(app.get(JwtAuthGuard));
+  // 💡 O Guard Global (JwtAuthGuard) foi removido daqui!
+  // Agora ele deve ser declarado no `app.module.ts` para não quebrar o CORS.
 
   const allowedOrigins = [
     'http://localhost:5173',
@@ -16,11 +16,21 @@ async function bootstrap() {
 
   app.enableCors({
     origin: (origin, callback) => {
-      // Permite apps mobile, Postman, Insomnia (sem origin)
-      if (!origin) {
+      // 📱 Permissões especiais para o APK Mobile e ferramentas de teste:
+      // - !origin: requisições nativas sem header Origin (Postman/Insomnia)
+      // - origin === 'null': comum em WebViews de APKs Android compilados
+      // - file://, capacitor://, ionic://: protocolos internos de apps mobile
+      if (
+        !origin || 
+        origin === 'null' || 
+        origin.startsWith('file://') || 
+        origin.startsWith('capacitor://') || 
+        origin.startsWith('ionic://')
+      ) {
         return callback(null, true);
       }
 
+      // 🌐 Permissões para os seus ambientes Web (Local e Vercel)
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
