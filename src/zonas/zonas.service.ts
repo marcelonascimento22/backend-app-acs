@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { Zona } from './entities/zona.entity';
 import { CreateZonaDto } from './dto/create-zona.dto';
 import { UpdateZonaDto } from './dto/update-zona.dto';
+import { UsuariosZona } from 'src/usuarios_zonas/entities/usuarios_zona.entity';
 
 @Injectable()
 export class ZonasService {
@@ -12,6 +13,9 @@ export class ZonasService {
   constructor(
     @InjectRepository(Zona)
     private readonly zonaRepository: Repository<Zona>,
+
+    @InjectRepository(UsuariosZona)
+    private readonly usuariosZonaRepository: Repository<UsuariosZona>,
   ) {}
 
   // LISTAR TODAS AS ZONAS
@@ -148,17 +152,16 @@ export class ZonasService {
   async remove(id: number) {
     const zona = await this.zonaRepository.findOne({
       where: { id },
-      relations: ['usuarios'],
     });
 
     if (!zona) {
       throw new NotFoundException('Zona não encontrada');
     }
 
-    // remove vínculos
-    zona.usuarios = [];
-
-    await this.zonaRepository.save(zona);
+    // remove registros da tabela pivot
+    await this.usuariosZonaRepository.delete({
+      zona: { id },
+    });
 
     // remove zona
     await this.zonaRepository.delete(id);
@@ -167,5 +170,4 @@ export class ZonasService {
       message: 'Zona removida com sucesso',
     };
   }
-
 }

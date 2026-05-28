@@ -24,6 +24,4 @@ export class Zona {
   @OneToMany(() => UsuariosZona, uz => uz.zona)
   usuariosZona: UsuariosZona[];
 
-  @ManyToMany(() => Usuario, usuario => usuario.zonas)
-  usuarios: Usuario[];
 }
