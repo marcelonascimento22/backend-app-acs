@@ -19,7 +19,7 @@ export class Zona {
     spatialFeatureType: 'Polygon',
     srid: 4326,
   })
-  geometria: any;
+  geometria: object;
 
   @OneToMany(() => UsuariosZona, uz => uz.zona)
   usuariosZona: UsuariosZona[];

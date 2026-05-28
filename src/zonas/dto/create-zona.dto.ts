@@ -9,10 +9,6 @@ export class CreateZonaDto {
   @IsString()
   descricao?: string;
 
-  @IsOptional()
-  @IsNumber()
-  acsId?: number;
-
   @IsObject()
   geometria: object;
 

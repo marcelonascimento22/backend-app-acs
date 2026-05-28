@@ -52,7 +52,7 @@ export class ZonasService {
   // CRIAR ZONA
   async create(createZonaDto: CreateZonaDto) {
 
-    const { nome, descricao, geometria, acsId } = createZonaDto;
+    const { nome, descricao, geometria } = createZonaDto;
 
     console.log("DTO recebido:", createZonaDto);
     //console.log("Geometria recebida:", geometria);
@@ -60,20 +60,18 @@ export class ZonasService {
     try {
       const result = await this.zonaRepository.query(
         `
-          INSERT INTO zonas (nome, descricao, geometria, acsId)
+          INSERT INTO zonas (nome, descricao, geometria)
           VALUES (
             $1,
             $2,
-            ST_SetSRID(ST_GeomFromGeoJSON($3),4326),
-            $4
+            ST_SetSRID(ST_GeomFromGeoJSON($3),4326)
           )
           RETURNING id
         `,
         [
           nome,
           descricao,
-          JSON.stringify(geometria),
-          acsId
+          JSON.stringify(geometria)
         ]
       );
 
