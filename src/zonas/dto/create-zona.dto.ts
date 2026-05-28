@@ -13,6 +13,7 @@ export class CreateZonaDto {
   @IsNumber()
   acsId?: number;
 
-  geometria: any;
+  @IsObject()
+  geometria: object;
 
 }

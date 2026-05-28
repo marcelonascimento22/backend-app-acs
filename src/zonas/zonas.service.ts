@@ -54,24 +54,26 @@ export class ZonasService {
 
     const { nome, descricao, geometria, acsId } = createZonaDto;
 
-    //console.log("DTO recebido:", createZonaDto);
+    console.log("DTO recebido:", createZonaDto);
     //console.log("Geometria recebida:", geometria);
 
     try {
       const result = await this.zonaRepository.query(
         `
-          INSERT INTO zonas (nome, descricao, geometria)
+          INSERT INTO zonas (nome, descricao, geometria, acsId)
           VALUES (
             $1,
             $2,
-            ST_SetSRID(ST_GeomFromGeoJSON($3),4326)
+            ST_SetSRID(ST_GeomFromGeoJSON($3),4326),
+            $4
           )
           RETURNING id
         `,
         [
           nome,
           descricao,
-          JSON.stringify(geometria)
+          JSON.stringify(geometria),
+          acsId
         ]
       );
 
