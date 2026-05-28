@@ -36,7 +36,9 @@ export class Usuario {
   @OneToMany(() => UsuariosZona, uz => uz.usuario)
   usuariosZona?: UsuariosZona[];
 
-  @ManyToMany(() => Zona, zona => zona.usuarios)
+  @ManyToMany(() => Zona, zona => zona.usuarios, {
+    onDelete: 'CASCADE',
+  })
   @JoinTable({
     name: 'usuarios_zona',
     joinColumn: { name: 'usuario_id', referencedColumnName: 'id' },

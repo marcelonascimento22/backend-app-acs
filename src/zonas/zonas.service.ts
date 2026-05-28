@@ -54,7 +54,7 @@ export class ZonasService {
 
     const { nome, descricao, geometria } = createZonaDto;
 
-    console.log("DTO recebido:", createZonaDto);
+    //console.log("DTO recebido:", createZonaDto);
     //console.log("Geometria recebida:", geometria);
 
     try {
