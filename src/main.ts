@@ -41,7 +41,9 @@ async function bootstrap() {
             origin.startsWith('exp://') ||
             origin.startsWith('http://192.168.') ||
             origin.startsWith('http://10.') ||
-            origin.startsWith('http://172.')
+            origin.startsWith('http://172.') ||
+            origin.startsWith('https://localhost') ||
+            origin.startsWith('http://localhost')
           ))
       ) {
         console.log('✅ [CORS Debug] Permitido mobile/local.');
