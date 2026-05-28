@@ -57,22 +57,30 @@ export class ZonasService {
     //console.log("DTO recebido:", createZonaDto);
     //console.log("Geometria recebida:", geometria);
 
-    const result = await this.zonaRepository.query(`
-      INSERT INTO zonas (nome, descricao, geometria)
-      VALUES (
-        $1,
-        $2,
-        ST_SetSRID(ST_GeomFromGeoJSON($3),4326)
-      )
-      RETURNING id
-    `,
-    [
-      nome,
-      descricao,
-      JSON.stringify(geometria)
-    ]);
+    try {
+      const result = await this.zonaRepository.query(
+        `
+          INSERT INTO zonas (nome, descricao, geometria)
+          VALUES (
+            $1,
+            $2,
+            ST_SetSRID(ST_GeomFromGeoJSON($3),4326)
+          )
+          RETURNING id
+        `,
+        [
+          nome,
+          descricao,
+          JSON.stringify(geometria)
+        ]
+      );
 
-    return result[0];
+      return result[0];
+
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 
   // ATUALIZAR GEOMETRIA DA ZONA
