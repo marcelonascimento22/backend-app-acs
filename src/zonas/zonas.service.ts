@@ -146,15 +146,26 @@ export class ZonasService {
 
   // REMOVER ZONA
   async remove(id: number) {
+    const zona = await this.zonaRepository.findOne({
+      where: { id },
+      relations: ['usuarios'],
+    });
 
-    const result = await this.zonaRepository.delete(id);
-
-    if (!result.affected) {
+    if (!zona) {
       throw new NotFoundException('Zona não encontrada');
     }
 
-    return { message: 'Zona removida com sucesso' };
+    // remove vínculos
+    zona.usuarios = [];
 
+    await this.zonaRepository.save(zona);
+
+    // remove zona
+    await this.zonaRepository.delete(id);
+
+    return {
+      message: 'Zona removida com sucesso',
+    };
   }
 
 }
