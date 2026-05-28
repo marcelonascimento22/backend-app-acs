@@ -158,9 +158,9 @@ export class ZonasService {
       throw new NotFoundException('Zona não encontrada');
     }
 
-    // remove registros da tabela pivot
+    // Corrigido para o TypeORM entender a relação baseada no seu @JoinColumn
     await this.usuariosZonaRepository.delete({
-      zona: { id },
+      zona: { id: id } // Passando o objeto com o id interno que ele resolverá para 'zona_id'
     });
 
     // remove zona
@@ -170,4 +170,5 @@ export class ZonasService {
       message: 'Zona removida com sucesso',
     };
   }
+
 }
