@@ -11,11 +11,15 @@ import { ViaAdministracao } from '../entities/viaAdministracao.enum';
 export class CreateVacinaDto {
 
   @IsString()
-  nome: string;
+  nome?: string;
 
   @IsOptional()
   @IsString()
   codigo?: string;
+
+  @IsOptional()
+  @IsString()
+  descricao?: string;
 
   @IsOptional()
   @IsString()

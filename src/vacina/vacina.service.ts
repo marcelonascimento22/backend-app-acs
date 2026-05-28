@@ -67,6 +67,7 @@ export class VacinaService {
     Object.assign(vacina, {
       nome: updateDto.nome ?? vacina.nome,
       codigo: updateDto.codigo ?? vacina.codigo,
+      descricao: updateDto.descricao ?? vacina.descricao,
       fabricante: updateDto.fabricante ?? vacina.fabricante,
       lote: updateDto.lote ?? vacina.lote,
       doseRecomendada: updateDto.doseRecomendada ?? vacina.doseRecomendada,
