@@ -159,9 +159,11 @@ export class ZonasService {
     }
 
     // Corrigido para o TypeORM entender a relação baseada no seu @JoinColumn
-    await this.usuariosZonaRepository.delete({
-      zona: { id: id } // Passando o objeto com o id interno que ele resolverá para 'zona_id'
-    });
+    await this.usuariosZonaRepository
+    .createQueryBuilder()
+    .delete()
+    .where('zona_id = :id', { id }) // Usando o 'zona_id' que você definiu no @JoinColumn
+    .execute();
 
     // remove zona
     await this.zonaRepository.delete(id);
