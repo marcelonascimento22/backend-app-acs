@@ -36,6 +36,7 @@ import { InternalController } from './internal/internal.controller';
 import { InternalModule } from './internal/internal.module';
 import { TestController } from '../test/test.controller';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { SyncModule } from './sync/sync.module';
 //console.log(process.env.DATABASE_PASSWORD);
 @Module({
   imports: [
@@ -103,6 +104,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
     DisponibilidadeModule,
     LoteModule,
     InternalModule,
+    SyncModule,
   ],
   controllers: [
     InternalController, 
