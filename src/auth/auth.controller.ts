@@ -24,6 +24,15 @@ export class AuthController {
     return this.authService.login(user);
   }
 
+  @Public()
+  @Post('register')
+  async register(@Body() body: any) {
+    // Only allow ACS for public registration
+    body.perfil = 'ACS';
+    body.ativo = true;
+    return this.authService.register(body);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get()
   buscar(@Req() req) {

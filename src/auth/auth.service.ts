@@ -58,4 +58,8 @@ export class AuthService {
 
     return user;
   }
+
+  async register(body: any) {
+    return this.usuariosService.create(body);
+  }
 }
